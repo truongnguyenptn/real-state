@@ -20,11 +20,11 @@ def create_sale(request):
             return redirect('http://127.0.0.1:8000/sale/sale_success')
     else:
         form = SaleForm()
-    return render(request, 'Sale/sale_form.html', {'form': form})
+    return render(request, 'sale/sale_form.html', {'form': form})
 
 def sale_success(request):
     return render(request, 'sale_success.html')
 
 
 def sale_send_success(request):
-    return render(request, 'Sale/sale_success.html')
+    return render(request, 'sale/sale_success.html')
