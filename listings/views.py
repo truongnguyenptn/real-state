@@ -38,7 +38,6 @@ def search(request):
                 Q(description__icontains=keywords) |
                 Q(address__icontains=keywords) |
                 Q(city__icontains=keywords) |
-                Q(state__icontains=keywords) |
                 Q(zipcode__icontains=keywords) |
                 Q(price__icontains=keywords) |
                 Q(bedrooms__icontains=keywords) |
@@ -56,11 +55,6 @@ def search(request):
     if city:
       queryset_list = queryset_list.filter(city__iexact=city)
 
-  # State
-  if 'state' in request.GET:
-    state = request.GET['state']
-    if state:
-      queryset_list = queryset_list.filter(state__iexact=state)
 
   # Bedrooms
   if 'bedrooms' in request.GET:
