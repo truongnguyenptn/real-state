@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block title %} | {{ listing.title }} {% endblock %}
+
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4">{{ listing.title }}</h1>
+          <p class="lead">
+            <i class="fas fa-map-marker"></i> {{ listing.city }} {{ listing.state }}, {{ listing.zipcode }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Alerts -->
+  {% include 'partials/_alerts.html' %}
+
+  <!-- Listing -->
+  <section id="listing" class="py-4">
+    <form action="{% url 'create_sale' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required><br><br>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required><br><br>
+
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" required><br><br>
+
+        <label for="zipcode">Zipcode:</label>
+        <input type="text" id="zipcode" name="zipcode" required><br><br>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea><br><br>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required><br><br>
+
+        <label for="bedrooms">Bedrooms:</label>
+        <input type="number" id="bedrooms" name="bedrooms" required><br><br>
+
+        <label for="bathrooms">Bathrooms:</label>
+        <input type="number" step="0.1" id="bathrooms" name="bathrooms" required><br><br>
+
+        <label for="garage">Garage:</label>
+        <input type="number" id="garage" name="garage" required><br><br>
+
+        <label for="sqft">Square Feet:</label>
+        <input type="number" id="sqft" name="sqft" required><br><br>
+
+        <label for="lot_size">Lot Size:</label>
+        <input type="number" step="0.1" id="lot_size" name="lot_size" required><br><br>
+
+        <label for="photo_main">Main Photo:</label>
+        <input type="file" id="photo_main" name="photo_main" required><br><br>
+
+        <label for="photo_1">Photo 1:</label>
+        <input type="file" id="photo_1" name="photo_1"><br><br>
+
+        <label for="photo_2">Photo 2:</label>
+        <input type="file" id="photo_2" name="photo_2"><br><br>
+
+        <label for="photo_3">Photo 3:</label>
+        <input type="file" id="photo_3" name="photo_3"><br><br>
+
+        <label for="photo_4">Photo 4:</label>
+        <input type="file" id="photo_4" name="photo_4"><br><br>
+
+        <label for="photo_5">Photo 5:</label>
+        <input type="file" id="photo_5" name="photo_5"><br><br>
+
+        <label for="photo_6">Photo 6:</label>
+        <input type="file" id="photo_6" name="photo_6"><br><br>
+
+        <label for="is_published">Is Published:</label>
+        <input type="checkbox" id="is_published" name="is_published" checked><br><br>
+
+        <label for="list_date">List Date:</label>
+        <input type="datetime-local" id="list_date" name="list_date"><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <!-- Inquiry Modal -->
+  <div class="modal fade" id="inquiryModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="{% url 'contact' %}" method="POST">
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+              <input type="hidden" name="user_id" value="{{ user.id }}">
+            {% else %}
+              <input type="hidden" name="user_id" value="0">
+            {% endif %}
+            <input type="hidden" name="realtor_email" value="{{ listing.realtor.email }}">
+            <input type="hidden" name="listing_id" value="{{ listing.id }}">
+            <div class="form-group">
+              <label for="property_name" class="col-form-label">Property:</label>
+              <input type="text" name="listing" class="form-control" value="{{ listing.title }}">
+            </div>
+            <div class="form-group">
+              <label for="name" class="col-form-label">Name:</label>
+              <input type="text" name="name" class="form-control" {% if user.is_authenticated %} value="{{ user.first_name }} {{ user.last_name }}" {% endif %} required>
+            </div>
+            <div class="form-group">
+              <label for="email" class="col-form-label">Email:</label>
+              <input type="email" name="email" class="form-control" {% if user.is_authenticated %} value="{{ user.email }}" {% endif %} required>
+            </div>
+            <div class="form-group">
+              <label for="phone" class="col-form-label">Phone:</label>
+              <input type="text" name="phone" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="message" class="col-form-label">Message:</label>
+              <textarea name="message" class="form-control"></textarea>
+            </div>
+            <hr>
+            <input type="submit" value="Send" class="btn btn-block btn-secondary">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
