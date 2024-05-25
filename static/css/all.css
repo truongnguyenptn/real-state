@@ -3812,4 +3812,9 @@ readers do not read off random characters that represent icons */
 
 
 
-  
+  #showcase-inner-success {
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    text-align: center;
+  }

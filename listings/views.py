@@ -35,17 +35,9 @@ def search(request):
     if keywords:
           query = (
                 Q(title__icontains=keywords) |
-                Q(description__icontains=keywords) |
-                Q(address__icontains=keywords) |
                 Q(city__icontains=keywords) |
-                Q(zipcode__icontains=keywords) |
                 Q(price__icontains=keywords) |
-                Q(bedrooms__icontains=keywords) |
-                Q(bathrooms__icontains=keywords) |
-                Q(garage__icontains=keywords) |
-                Q(sqft__icontains=keywords) |
-                Q(lot_size__icontains=keywords) |
-                Q(list_date__icontains=keywords)
+                Q(lot_size__icontains=keywords) 
             )
           queryset_list = queryset_list.filter(query)
 

@@ -1948,7 +1948,9 @@ a:hover {
         padding: 3rem 4.5rem;
     }
 }
-
+.list-comments {
+  list-style: none !important;
+}
 .sinse-box .sinse-title {
     font-weight: 700;
     letter-spacing: 0.043em;
