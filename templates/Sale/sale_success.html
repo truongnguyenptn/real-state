@@ -5,16 +5,27 @@
 {% block title %} | {{ listing.title }} {% endblock %}
 
 {% block content %}
-<section id="showcase-inner" class="py-5 text-white">
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
     <div class="container">
-      <div class="row text-center">
-        <div class="col-md-12">
-          <h1 class="display-4">{{ listing.title }}</h1>
-          <p class="lead">
-            <i class="fas fa-map-marker"></i> {{ listing.city }} {{ listing.state }}, {{ listing.zipcode }}</p>
-        </div>
-      </div>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'listings' %}">Listings</a>
+          </li>
+          <li class="breadcrumb-item active">{{ listing.title }}</li>
+        </ol>
+      </nav>
     </div>
+  </section>
+<section id="showcase-inner showcase-inner-success" class="py-5 ">
+    <form action="{% url 'create_sale' %}" method="POST" enctype="multipart/form-data">
+    <h1>Sale Submitted Successfully!</h1>
+    <p>Thank you for submitting the sale information.</p>
+    </form>
   </section>
 
 
@@ -23,12 +34,7 @@
   {% include 'partials/_alerts.html' %}
 
   <!-- Listing -->
-  <section id="listing" class="py-4">
-    <form action="{% url 'create_sale' %}" method="POST" enctype="multipart/form-data">
-    <h1>Sale Submitted Successfully!</h1>
-    <p>Thank you for submitting the sale information.</p>
-    </form>
-  </section>
+
 
   <!-- Inquiry Modal -->
   <div class="modal fade" id="inquiryModal" role="dialog">

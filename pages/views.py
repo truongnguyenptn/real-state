@@ -47,3 +47,4 @@ def blog(request):
     }
 
     return render(request, 'blog/posts_grid.html', context)
+

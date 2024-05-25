@@ -4195,6 +4195,13 @@ a:hover {
   color: #000000;
 }
 
+#showcase-inner-success {
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  text-align: center;
+}
+
 /*--------------------------------------------------------------
 # Contact Section
 --------------------------------------------------------------*/
