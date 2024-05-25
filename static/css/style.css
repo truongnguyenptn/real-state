@@ -64,7 +64,9 @@ img {
     min-height: 270px; }
 #showcase-inner-success {
   text-align: center;
-  
+  justify-content: center;
+  display: flex;
+  text-align: center;
 }
 #work {
   padding: 6rem 0; }
