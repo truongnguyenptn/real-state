@@ -19,6 +19,10 @@
 </head>
 
 <body>
+  {% load i18n %}
+  {% load l10n %}
+
+  {% language 'de' %}
   <!-- Top Bar -->
   {% include 'partials/_topbar.html' %}
   <!-- NavBar -->
@@ -28,7 +32,8 @@
   <!-- Footer -->
   {% include 'partials/_footer.html' %}
   
-
+  
+  {% endlanguage %}
   <script src="{% static 'js/jquery-3.3.1.min.js' %} "></script>
   <script src="{% static 'js/bootstrap.bundle.min.js' %} "></script>
   <script src="{% static 'js/lightbox.min.js' %} "></script>

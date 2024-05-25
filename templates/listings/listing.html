@@ -3,7 +3,7 @@
 {% load humanize %}
 
 {% block title %} | {{ listing.title }} {% endblock %}
-
+{% load  %}
 {% block content %}
 <section id="showcase-inner" class="py-5 text-white">
     <div class="container">
@@ -96,7 +96,7 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item text-secondary">
                   <i class="fas fa-money-bill-alt"></i> Asking Price:
-                  <span class="float-right">{{ listing.price  }} VND</span>
+                  <span class="float-right">{{ listing.price |intcomma  }} VND</span>
                 </li>
                 <li class="list-group-item text-secondary">
                   <i class="fas fa-bed"></i> Bedrooms:
@@ -152,6 +152,9 @@
             <div class="card-body">
               <h5 class="card-title">Property Realtor</h5>
               <h6 class="text-secondary">{{ listing.realtor }}</h6>
+              <p class="card-text">{{ listing.realtor.description }}</p>
+              <p class="card-text">Email: {{ listing.realtor.email }}</p>
+              <p class="card-text">Phone: {{ listing.realtor.phone }}</p>
             </div>
           </div>
           <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Make An Inquiry</button>

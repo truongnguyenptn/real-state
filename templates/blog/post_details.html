@@ -1,7 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <main id="main">
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'blog' %}">
+              <i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="breadcrumb-item active"> Blog</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+    <main id="main" class="p-3">
 
         <!-- ======= Intro Single ======= -->
         <section class="intro-single">
